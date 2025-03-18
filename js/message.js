@@ -6,6 +6,14 @@ document.addEventListener('DOMContentLoaded', function() {
     emailjs.init("sZL0Ye0llmqnTwNrC")
         .then(() => {
             console.log('EmailJS initialized successfully');
+            // Test the connection
+            emailjs.send('service_3qcszhi', 'template_s2gxy7j', {
+                from_name: 'Test User',
+                from_email: 'test@example.com',
+                message: 'Test message'
+            })
+            .then(() => console.log('Test email sent successfully'))
+            .catch(err => console.error('Test email failed:', err));
         })
         .catch(err => {
             console.error('EmailJS initialization failed:', err);
@@ -22,10 +30,11 @@ document.addEventListener('DOMContentLoaded', function() {
         const formData = {
             from_name: form.name.value,
             from_email: form.email.value,
-            message: form.message.value
+            message: form.message.value,
+            date: new Date().toLocaleString()
         };
 
-        console.log('Sending email with data:', formData);
+        console.log('Attempting to send email with data:', formData);
 
         // Send the email using EmailJS
         emailjs.send('service_3qcszhi', 'template_s2gxy7j', formData)
