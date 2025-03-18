@@ -12,17 +12,11 @@ document.addEventListener('DOMContentLoaded', function() {
     emailjs.init("sZL0Ye0llmqnTwNrC")
         .then(() => {
             console.log('EmailJS initialized successfully');
-            // Test the connection
-            emailjs.send('service_3qcszhi', 'template_s2gxy7j', {
-                from_name: 'Test User',
-                from_email: 'test@example.com',
-                message: 'Test message'
-            })
-            .then(() => console.log('Test email sent successfully'))
-            .catch(err => console.error('Test email failed:', err));
         })
         .catch(err => {
             console.error('EmailJS initialization failed:', err);
+            responseMessage.textContent = 'Failed to initialize email service. Please refresh the page.';
+            responseMessage.className = 'response-message error';
         });
 
     form.addEventListener('submit', function(e) {
