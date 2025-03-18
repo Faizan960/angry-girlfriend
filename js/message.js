@@ -8,6 +8,8 @@ document.addEventListener('DOMContentLoaded', function() {
         return;
     }
 
+    console.log('EmailJS is loaded, initializing...');
+
     // Initialize EmailJS with your public key
     emailjs.init("sZL0Ye0llmqnTwNrC")
         .then(() => {
@@ -21,6 +23,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     form.addEventListener('submit', function(e) {
         e.preventDefault();
+        console.log('Form submitted');
 
         // Show loading state
         responseMessage.textContent = 'Sending message...';
@@ -34,9 +37,12 @@ document.addEventListener('DOMContentLoaded', function() {
             date: new Date().toLocaleString()
         };
 
-        console.log('Attempting to send email with data:', formData);
+        console.log('Form data:', formData);
+        console.log('Service ID:', 'service_3qcszhi');
+        console.log('Template ID:', 'template_s2gxy7j');
 
         // Send the email using EmailJS
+        console.log('Attempting to send email...');
         emailjs.send('service_3qcszhi', 'template_s2gxy7j', formData)
             .then(function(response) {
                 console.log('Email sent successfully:', response);
@@ -44,7 +50,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 responseMessage.className = 'response-message success';
                 form.reset(); // Clear the form
             }, function(error) {
-                console.error('EmailJS error:', error);
+                console.error('EmailJS error details:', {
+                    message: error.message,
+                    status: error.status,
+                    text: error.text
+                });
                 responseMessage.textContent = 'Failed to send message. Please try again later.';
                 responseMessage.className = 'response-message error';
             });
