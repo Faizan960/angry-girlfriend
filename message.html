@@ -7,8 +7,6 @@
   <!-- Cartoonish font for a cute design -->
   <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./css/style.css">
-  <!-- Add EmailJS SDK -->
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 </head>
 <body>
   <div class="message-container">
@@ -29,6 +27,9 @@
     <div id="responseMessage" class="response-message"></div>
     <a href="index.html" class="back-link">Back to Home</a>
   </div>
+  <!-- Load EmailJS script first -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <!-- Then load our message.js -->
   <script src="./js/message.js"></script>
 </body>
 </html>

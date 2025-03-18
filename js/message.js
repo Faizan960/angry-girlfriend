@@ -2,6 +2,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('messageForm');
     const responseMessage = document.getElementById('responseMessage');
 
+    // Wait for EmailJS to be loaded
+    if (typeof emailjs === 'undefined') {
+        console.error('EmailJS is not loaded!');
+        return;
+    }
+
     // Initialize EmailJS with your public key
     emailjs.init("sZL0Ye0llmqnTwNrC")
         .then(() => {
